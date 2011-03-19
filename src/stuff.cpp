@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -7,9 +8,10 @@ int intro_to_pointers();
 int intro_to_structs();
 int intro_to_arrays();
 int intro_to_c_strings();
+int intro_to_file_io();
 
 int main() {
-	return intro_to_c_strings();
+	return intro_to_file_io();
 }
 
 int intro_to_pointers() {
@@ -116,5 +118,25 @@ int intro_to_c_strings() {
 	strcat(fullname, lastname); // Copy lastname onto the end of fullname
 	cout << "Your full name is " << fullname << "\n";
 	cin.get();
+	return 0;
+}
+
+int intro_to_file_io() {
+	char str[10];
+
+	//Creates an instance of ofstream, and opens example.txt
+	ofstream a_file("example.txt");
+	// Outputs to example.txt through a_file
+	a_file << "This text will now be inside of example.txt\n";
+	// Close the file stream explicitly
+	a_file.close();
+	//Opens for reading the file
+	ifstream b_file("example.txt");
+	//Reads one string from the file
+	b_file >> str;
+	//Should output 'this'
+	cout << str << "\n";
+	cin.get(); // wait for a keypress
+	// b_file is closed implicitly here
 	return 0;
 }
