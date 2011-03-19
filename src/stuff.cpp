@@ -9,9 +9,10 @@ int intro_to_structs();
 int intro_to_arrays();
 int intro_to_c_strings();
 int intro_to_file_io();
+int intro_to_typecasting();
 
 int main() {
-	return intro_to_file_io();
+	return intro_to_typecasting();
 }
 
 int intro_to_pointers() {
@@ -138,5 +139,13 @@ int intro_to_file_io() {
 	cout << str << "\n";
 	cin.get(); // wait for a keypress
 	// b_file is closed implicitly here
+	return 0;
+}
+
+int intro_to_typecasting() {
+	for (int x = 0; x < 256; x++) {
+		cout << x << ". " << (char) x << "\n";
+	}
+	cin.get();
 	return 0;
 }
