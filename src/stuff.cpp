@@ -4,12 +4,15 @@ using namespace std;
 
 int add(int *a, int b);
 int intro_to_pointers();
+int intro_to_structs();
 
 int main() {
-	return intro_to_pointers();
+	// return intro_to_pointers();
+	return intro_to_structs();
 }
 
 int intro_to_pointers() {
+	cout << "intro_to_pointers() called\n";
 
 	/*
 	 * Note that a is a pointer and b is a regular int.  note the
@@ -35,4 +38,28 @@ int intro_to_pointers() {
 
 int add(int *a, int b) {
 	return *a + b;
+}
+
+struct xampl {
+	int x;
+};
+
+int intro_to_structs() {
+	cout << "intro_to_structs() called\n";
+	xampl structure;
+	xampl *ptr;
+
+	structure.x = 12;
+
+	// Yes, you need the & when dealing with structures
+	//  and using pointers to them
+	ptr = &structure;
+
+	// The -> acts somewhat like the * when used with pointers
+	//  It says, get whatever is at that memory address
+	//  Not "get what that memory address is"
+	cout << ptr->x;
+
+	cin.get();
+	return 0;
 }
