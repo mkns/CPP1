@@ -6,11 +6,10 @@ int add(int *a, int b);
 int intro_to_pointers();
 int intro_to_structs();
 int intro_to_arrays();
+int intro_to_c_strings();
 
 int main() {
-	// return intro_to_pointers();
-	// return intro_to_structs();
-	return intro_to_arrays();
+	return intro_to_c_strings();
 }
 
 int intro_to_pointers() {
@@ -67,29 +66,55 @@ int intro_to_structs() {
 }
 
 int intro_to_arrays() {
-	  int x;
-	  int y;
-	  int array[8][8]; // Declares an array like a chessboard
+	int x;
+	int y;
+	int array[8][8]; // Declares an array like a chessboard
 
-	  for ( x = 0; x < 8; x++ ) {
-	    for ( y = 0; y < 8; y++ )
-	      array[x][y] = x * y; // Set each element to a value
-	  }
-	  cout<<"Array Indices:\n";
-	  for ( x = 0; x < 8;x++ ) {
-	    for ( y = 0; y < 8; y++ )
-	      cout<<"["<<x<<"]["<<y<<"]="<< array[x][y] <<" ";
-	    cout<<"\n";
-	  }
+	for (x = 0; x < 8; x++) {
+		for (y = 0; y < 8; y++)
+			array[x][y] = x * y; // Set each element to a value
+	}
+	cout << "Array Indices:\n";
+	for (x = 0; x < 8; x++) {
+		for (y = 0; y < 8; y++)
+			cout << "[" << x << "][" << y << "]=" << array[x][y] << " ";
+		cout << "\n";
+	}
 
-	  /*
-	   * Here we show that the address of the array is actually the
-	   * address of the first element of the array.
-	   */
-	  cout << "looking at the array itself shows a pointer address of: " << array << "\n";
-	  cout << "the address of the first element: " << &array[0][0] << "\n";
-	  cout << "the address of the second element: " << &array[0][1] << "\n";
+	/*
+	 * Here we show that the address of the array is actually the
+	 * address of the first element of the array.
+	 */
+	cout << "looking at the array itself shows a pointer address of: " << array
+			<< "\n";
+	cout << "the address of the first element: " << &array[0][0] << "\n";
+	cout << "the address of the second element: " << &array[0][1] << "\n";
 
-	  cin.get();
-	  return 0;
+	cin.get();
+	return 0;
+}
+
+int intro_to_c_strings() {
+	char name[50];
+	char lastname[50];
+	char fullname[100]; // Big enough to hold both name and lastname
+
+	cout << "Please enter your name: ";
+	cin.getline(name, 50);
+	if (strcmp(name, "Julienne") == 0) // Equal strings
+		cout << "That's my name too.\n";
+	else
+		// Not equal
+		cout << "That's not my name.\n";
+	// Find the length of your name
+	cout << "Your name is " << strlen(name) << " letters long\n";
+	cout << "Enter your last name: ";
+	cin.getline(lastname, 50);
+	fullname[0] = '\0'; // strcat searches for '\0' to cat after
+	strcat(fullname, name); // Copy name into full name
+	strcat(fullname, " "); // We want to separate the names by a space
+	strcat(fullname, lastname); // Copy lastname onto the end of fullname
+	cout << "Your full name is " << fullname << "\n";
+	cin.get();
+	return 0;
 }
