@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -15,12 +16,11 @@ int intro_to_classes();
 void handle_command_line_arguments(int argc, char *argv[]);
 void generate_linked_list();
 int intro_to_vectors();
+void intro_to_maps();
 
 int main(int argc, char *argv[]) {
-	handle_command_line_arguments(argc, argv);
-	generate_linked_list();
-	intro_to_vectors();
-	return intro_to_classes();
+	intro_to_maps();
+	return 0;
 }
 
 int intro_to_pointers() {
@@ -262,16 +262,61 @@ int intro_to_vectors() {
 	if (!example.empty()) //Checks if empty
 		example.clear(); //Clears vector
 
-	vector<int> another_vector; //Creates another vector to store integers
-	another_vector.push_back(10); //Adds to end of vector
-	example.push_back(10); //Same
-	if (example == another_vector) //To show testing equality
-	{
+	/*
+	 * here, we create another vector with the same data as the other one,
+	 * and show that we can test for equality between them.
+	 */
+	vector<int> another_vector;
+	another_vector.push_back(10);
+	example.push_back(10);
+	if (example == another_vector) {
 		example.push_back(20);
+		/*
+		 * at this point, example has two entries, 10 and 20
+		 */
 	}
-	for (unsigned int y = 0; y < example.size(); y++) {
-		cout << example[y] << " "; //Should output 10 20
+
+	/*
+	 *  iterate over the vector again, but this time,
+	 *  let's use an iterator. this time, we'll see:
+	 *
+	 *  10 20
+	 */
+	vector<int>::iterator i;
+	for (i = example.begin(); i != example.end(); i++) {
+		cout << *i << " ";
 	}
 	cout << endl;
 	return 0;
+}
+
+void intro_to_maps() {
+	map<string, int> hash;
+	hash["Kenny"] = 38;
+	hash["Kathryn"] = 38;
+	hash["Lauren"] = 10;
+	hash["Rebecca"] = 6;
+	hash["Jo"] = 3;
+
+	cout << "There are " << hash.size() << " people in the hash" << endl;
+
+	/*
+	 * we need to search for something.  note that we find() on the map,
+	 * and the returned value is an iterator object
+	 */
+	map<string, int>::iterator person = hash.find("Rebecca");
+
+	// now we access the key (first) and value (second)
+	cout << "The person is " << person->first << " and their age is "
+			<< person->second << endl;
+
+	person = hash.begin();
+	cout << "The person deemed at the beginning is " << person->first << endl;
+
+	// now we loop over the entire hash.
+	typedef std::map<std::string, int> MapType;
+	MapType::const_iterator end = hash.end();
+	for (MapType::const_iterator it = hash.begin(); it != end; ++it) {
+		std::cout << it->first << " is " << it->second << " years old" << endl;
+	}
 }
