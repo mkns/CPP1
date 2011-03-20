@@ -239,12 +239,9 @@ void generate_linked_list() {
 	nextElement->next = 0; // to indicate there are no more elements in the linked list
 
 	nextElement = root;
-	if (nextElement != 0) { // Makes sure there is a place to start
-		while (nextElement->next != 0) {
-			cout << "nextElement: " << nextElement->x << "\n";
-			nextElement = nextElement->next;
-		}
-		cout << "Last element: " << nextElement->x << "\n";
+	while (nextElement != NULL) { // Makes sure there is a place to start
+		cout << "nextElement: " << nextElement->x << "\n";
+		nextElement = nextElement->next;
 	}
 
 }
