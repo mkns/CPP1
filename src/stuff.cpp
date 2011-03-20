@@ -12,9 +12,11 @@ int intro_to_file_io();
 int intro_to_typecasting();
 int intro_to_classes();
 void handle_command_line_arguments(int argc, char *argv[]);
+void generate_linked_list();
 
 int main(int argc, char *argv[]) {
 	handle_command_line_arguments(argc, argv);
+	generate_linked_list();
 	return intro_to_classes();
 }
 
@@ -211,6 +213,38 @@ void handle_command_line_arguments(int argc, char *argv[]) {
 			}
 		}
 		// the_file is closed implicitly here
+	}
+
+}
+
+struct node {
+	int x;
+	node *next;
+};
+
+void generate_linked_list() {
+	// first element
+	node *root = new node;
+	root->x = 4;
+	root->next = new node;
+
+	// second element
+	node *nextElement = root->next;
+	nextElement->x = 8;
+	nextElement->next = new node;
+
+	// third and final element
+	nextElement = nextElement->next;
+	nextElement->x = 12;
+	nextElement->next = 0; // to indicate there are no more elements in the linked list
+
+	nextElement = root;
+	if (nextElement != 0) { // Makes sure there is a place to start
+		while (nextElement->next != 0) {
+			cout << "nextElement: " << nextElement->x << "\n";
+			nextElement = nextElement->next;
+		}
+		cout << "Last element: " << nextElement->x << "\n";
 	}
 
 }
