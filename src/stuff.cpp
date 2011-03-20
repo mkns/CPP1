@@ -11,8 +11,10 @@ int intro_to_c_strings();
 int intro_to_file_io();
 int intro_to_typecasting();
 int intro_to_classes();
+void handle_command_line_arguments(int argc, char *argv[]);
 
-int main() {
+int main(int argc, char *argv[]) {
+	handle_command_line_arguments(argc, argv);
 	return intro_to_classes();
 }
 
@@ -168,7 +170,7 @@ Computer::Computer() {
 Computer::~Computer() {
 }
 
-void Computer::setAge( int a ) {
+void Computer::setAge(int a) {
 	age = a;
 }
 
@@ -184,4 +186,31 @@ int intro_to_classes() {
 	compute.setAge(38);
 	cout << "New age: " << compute.getAge() << "\n";
 	return 0;
+}
+
+void handle_command_line_arguments(int argc, char *argv[]) {
+	if (argc != 2) // argc should be 2 for correct execution
+		// We print argv[0] assuming it is the program name
+		cout << "usage: " << argv[0] << " <filename>\n";
+	else {
+		// We assume argv[1] is a filename to open
+		ifstream the_file(argv[1]);
+		// Always check to see if file opening succeeded
+		if (!the_file.is_open())
+			cout << "Could not open file: " << argv[1] << "\n";
+		else {
+			char x;
+			// the_file.get ( x ) returns false if the end of the file
+			//  is reached or an error occurs
+			while (the_file.get(x)) {
+				/*
+				 * for the avoidance of doubt, this is reading one character
+				 * at a time.
+				 */
+				cout << x;
+			}
+		}
+		// the_file is closed implicitly here
+	}
+
 }
