@@ -10,9 +10,10 @@ int intro_to_arrays();
 int intro_to_c_strings();
 int intro_to_file_io();
 int intro_to_typecasting();
+int intro_to_classes();
 
 int main() {
-	return intro_to_typecasting();
+	return intro_to_classes();
 }
 
 int intro_to_pointers() {
@@ -147,5 +148,40 @@ int intro_to_typecasting() {
 		cout << x << ". " << (char) x << "\n";
 	}
 	cin.get();
+	return 0;
+}
+
+class Computer {
+public:
+	Computer();
+	~Computer();
+	void setAge(int a);
+	int getAge();
+protected:
+	int age;
+};
+
+Computer::Computer() {
+	age = -1;
+}
+
+Computer::~Computer() {
+}
+
+void Computer::setAge( int a ) {
+	age = a;
+}
+
+int Computer::getAge() {
+	return age;
+}
+
+int intro_to_classes() {
+	// Slightly non-obviously (to me, anyway), this calls the constructor:
+	Computer compute;
+
+	cout << "Current age: " << compute.getAge() << "\n";
+	compute.setAge(38);
+	cout << "New age: " << compute.getAge() << "\n";
 	return 0;
 }
