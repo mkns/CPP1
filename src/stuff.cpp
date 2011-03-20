@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <cstring>
 
 using namespace std;
 
@@ -17,9 +18,10 @@ void handle_command_line_arguments(int argc, char *argv[]);
 void generate_linked_list();
 int intro_to_vectors();
 void intro_to_maps();
+void chars_strings();
 
 int main(int argc, char *argv[]) {
-	intro_to_maps();
+	chars_strings();
 	return 0;
 }
 
@@ -319,4 +321,21 @@ void intro_to_maps() {
 	for (MapType::const_iterator it = hash.begin(); it != end; ++it) {
 		std::cout << it->first << " is " << it->second << " years old" << endl;
 	}
+}
+
+void chars_strings() {
+	char one[] = "hello";
+	char two[] = { 'c', 'h', 'e', 'e', 'r', 'i', 'o' };
+	char three[12];
+
+	cout << "say something: ";
+	cin >> three;
+
+	/*
+	 * strlen() (from cstring) tells us how long the string in the array is,
+	 * no matter how long the array was that was originally defined.  note,
+	 * therefore, that three[12] won't return 12, unless of course you
+	 * enter a 12 character phrase
+	 */
+	cout << strlen(one) << " " << strlen(two) << " " << strlen(three);
 }
